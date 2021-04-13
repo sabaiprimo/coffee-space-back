@@ -1,0 +1,32 @@
+{
+  "name": "coffee-space-back",
+  "version": "1.0.0",
+  "description": "backend for coffeespace project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabaiprimo/coffee-space-back.git"
+  },
+  "author": "Tatsapat Saerejittima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabaiprimo/coffee-space-back/issues"
+  },
+  "homepage": "https://github.com/sabaiprimo/coffee-space-back#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.22.2",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "mongoose": "^5.12.3",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  }
+}
