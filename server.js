@@ -1,9 +1,9 @@
 'use strict';
 
-const dotenv = require('dotenv');
-const { ApolloServer } = require('apollo-server-express');
-const express = require('express');
-const connectMongo = require('./db/db.js');
+import dotenv from 'dotenv';
+import { ApolloServer } from 'apollo-server-express';
+import express from 'express';
+import connectMongo from './db/db.js';
 dotenv.config();
 
 const app = express();
@@ -32,6 +32,8 @@ app.use(express.urlencoded({ extended: true }));
       //     }
       //   },
     });
+
+    server.applyMiddleware({ app });
 
     process.env.DEPLOY_ENVI = process.env.DEPLOY_ENVI || 'development';
     if (process.env.DEPLOY_ENVI === 'production') {
