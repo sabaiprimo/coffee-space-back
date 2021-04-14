@@ -3,6 +3,8 @@
 import dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
+import schemas from './schemas/index.js';
+import resolvers from './resolvers/index.js';
 import connectMongo from './db/db.js';
 dotenv.config();
 
