@@ -6,7 +6,7 @@ const articleSchema = new Schema({
   title: String,
   subtitle: String,
   headline: String,
-  author: String, //Add user later
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, //Add user later
   cover: {
     src: String,
   },
