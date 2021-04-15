@@ -1,14 +1,15 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  type favRecipe {
-    recipes: [Recipe]
+  type favArticle {
+    id: ID
+    articles: [Article]
     userID: User
-    favDate: Date
+    favDate: DateTime
   }
 
   extend type Query {
-    favRecipes: [favRecipes]
+    favArticles: [favArticle]
   }
 
   #   extend type Mutation {

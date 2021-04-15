@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type Article {
+    id: ID
     title: String
     subtitle: String
     headline: String
@@ -9,7 +10,7 @@ export default gql`
     cover: coverImage
     images: [image]
     content: [contentItem]
-    issueDate: Time
+    issueDate: DateTime
   }
 
   type coverImage {

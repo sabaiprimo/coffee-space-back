@@ -3,14 +3,15 @@ const { gql } = pkg;
 
 export default gql`
   type Comment {
+    id: ID
     recipeID: Recipe
     userId: User
     context: String
-    commentDate: Date
+    commentDate: DateTime
   }
 
   extend type Query {
-    comments: [comment]
+    comments: [Comment]
   }
 
   extend type Mutation {
@@ -18,14 +19,14 @@ export default gql`
       recipeID: ID
       userId: ID
       context: String
-      commentDate: Date
+      commentDate: DateTime
     ): Comment
     editComment(
       id: ID!
       recipeID: ID
       userId: ID
       context: String
-      commentDate: Date
+      commentDate: DateTime
     ): Comment
   }
 `;

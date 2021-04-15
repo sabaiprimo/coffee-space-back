@@ -17,7 +17,7 @@ const articleSchema = new Schema({
       text: Sring,
     },
   ],
-  issueDate: Time,
+  issueDate: Date,
 });
 
 export default mongoose.model('Article', articleSchema);

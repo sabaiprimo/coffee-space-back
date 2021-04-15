@@ -9,7 +9,7 @@ export default gql`
   }
 
   extend type Query {
-    ratings: [rating]
+    ratings: [Rating]
   }
 
   #   extend type Mutation {
