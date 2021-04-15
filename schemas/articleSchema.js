@@ -11,6 +11,7 @@ export default gql`
     images: [image]
     content: [contentItem]
     issueDate: DateTime
+    tags: [String]
   }
 
   type coverImage {
@@ -27,8 +28,18 @@ export default gql`
     text: String
   }
 
+  type ArticleFilters {
+    tags: [String]
+    title: String
+  }
+
+  type ArticleInput {
+    filter: ArticleFilters
+  }
+
   extend type Query {
-    articles: [Article]
+    articles(input: ArticleInput): [Article]
+    article(id: ID!): Article
   }
 
   #   extend type Mutation {

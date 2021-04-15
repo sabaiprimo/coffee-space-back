@@ -18,6 +18,11 @@ const articleSchema = new Schema({
     },
   ],
   issueDate: Date,
+  tag: [
+    {
+      type: String,
+    },
+  ],
 });
 
 export default mongoose.model('Article', articleSchema);
