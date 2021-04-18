@@ -5,5 +5,9 @@ export default {
     favArticles: () => {
       return FavArticle.find();
     },
+    favArticle: (parent, args) => {
+       const { userid } = args;
+      return await FavArticle.find((favarticle) => favarticle.userID === userid);
+    },
   },
 };

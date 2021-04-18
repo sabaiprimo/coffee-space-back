@@ -12,6 +12,7 @@ export default gql`
 
   extend type Query {
     comments: [Comment]
+    comment(id: ID!): Comment
   }
 
   extend type Mutation {

@@ -10,6 +10,7 @@ export default gql`
 
   extend type Query {
     favRecipes: [favRecipe]
+    favRecipe(userid: ID!): faveRecipe
   }
 
   #   extend type Mutation {

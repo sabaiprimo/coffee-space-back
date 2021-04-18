@@ -5,5 +5,8 @@ export default {
     comments: () => {
       return Comment.find();
     },
+    comment: (parent, args) => {
+      return Comment.findById(args.id);
+    },
   },
 };
