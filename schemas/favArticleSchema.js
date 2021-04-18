@@ -13,11 +13,8 @@ export default gql`
     favArticle(id: ID!): favArticle
   }
 
-  #   extend type Mutation {
-  #     addLevel(
-  #       Comment: String
-  #       IsFastChargeCapable: Boolean
-  #       Title: String
-  #     ): Level
-  #   }
+  extend type Mutation {
+    addFavArticle(userID: ID!, articles: [Article]): favArticle
+    editFavArticle(id: ID!, articles: [Article]): favArticle
+  }
 `;

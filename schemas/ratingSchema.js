@@ -3,6 +3,7 @@ const { gql } = pkg;
 
 export default gql`
   type Rating {
+    id: ID
     recipeID: Recipe
     userId: User
     rating: Int
@@ -12,11 +13,8 @@ export default gql`
     ratings: [Rating]
   }
 
-  #   extend type Mutation {
-  #     addLevel(
-  #       Comment: String
-  #       IsFastChargeCapable: Boolean
-  #       Title: String
-  #     ): Level
-  #   }
+  extend type Mutation {
+    addRating(recipeID: ID!, userId: ID!, rating: Int!): Rating
+    editRating(id: ID!, rating: Int!): Rating
+  }
 `;
