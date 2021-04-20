@@ -18,6 +18,10 @@ export default gql`
     src: String
   }
 
+  input coverImageInput {
+    src: String
+  }
+
   type image {
     src: String
     textNumber: Int
@@ -27,26 +31,48 @@ export default gql`
     textNumber: Int
     text: String
   }
+  input contentItemInput {
+    textNumber: Int
+    text: String
+  }
 
-  type ArticleFilters {
+  input ArticleFilters {
     tags: [String]
     title: String
   }
 
-  type ArticleInput {
-    filter: ArticleFilters
-  }
+  # input ArticleInput {
+  #   filter: ArticleFilters
+  # }
 
   extend type Query {
-    articles(input: ArticleInput): [Article]
+    articles(filter: ArticleFilters): [Article]
     article(id: ID!): Article
   }
 
-  #   extend type Mutation {
-  #     addLevel(
-  #       Comment: String
-  #       IsFastChargeCapable: Boolean
-  #       Title: String
-  #     ): Level
-  #   }
+  extend type Mutation {
+    addArticle(
+      title: String
+      subtitle: String
+      headline: String
+      author: ID!
+      cover: coverImageInput
+      images: [String]
+      content: [contentItemInput]
+      issueDate: DateTime
+      tags: [String]
+    ): Article
+    edit(
+      id: ID!
+      title: String
+      subtitle: String
+      headline: String
+      author: ID!
+      cover: coverImageInput
+      images: [String]
+      content: [contentItemInput]
+      issueDate: DateTime
+      tags: [String]
+    ): Article
+  }
 `;

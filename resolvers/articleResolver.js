@@ -14,7 +14,7 @@ export default {
       const shouldApplyName = filter.title !== null;
 
       if (shouldApplyTag) {
-        return await Article.find({tags: { "$in" : filter.tags]} })
+        return await Article.find({ tags: { $in: filter.tags } });
       }
 
       if (shouldApplyName) {
@@ -23,11 +23,32 @@ export default {
         return await Article.find({ title: { $regex: regex } });
       }
 
-    return await Article.find();
+      return await Article.find();
     },
     article: async (parent, args, context, info) => {
       const { id } = args;
       return await Article.find((article) => article.id === id);
+    },
+  },
+  Mutation: {
+    // Add article: create new article
+    addArticle: (parent, args) => {
+      console.log('article Resolver, addArticle', args);
+      const newArticle = new Article(args);
+      return newArticle.save();
+    },
+    // Edit article: find article by id and update
+    modifyArticle: async (parent, args) => {
+      // if (!context.user) {
+      //   throw new AuthenticationError('authication failed');
+      // }
+      return await Article.findByIdAndUpdate(
+        args.id,
+        {
+          ...args,
+        },
+        { new: true }
+      );
     },
   },
 };

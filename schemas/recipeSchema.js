@@ -1,22 +1,18 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  extend type Query {
-    recipes: [Recipe]
-    recipe(id: ID!): Recipe
-  }
-
   type Recipe {
     title: String
     description: String
-    preparationTime: String
-    totalTime: String
+    preparationTime: Float
+    totalTime: Float
     serving: Int
     roastLevel: String
     level: String
     ingredient: String
     equipment: String
     directions: [Direction]
+    author: User
   }
 
   type Direction {
@@ -27,6 +23,23 @@ export default gql`
   input DirectionInput {
     step: Int
     content: String
+  }
+
+  input RecipeFilters {
+    preparationTime: Float
+    totalTime: Float
+    serving: Int
+    roastLevel: String
+    level: String
+  }
+
+  # input RecipeInput {
+  #   filter: RecipeFilters
+  # }
+
+  extend type Query {
+    recipes(filter: RecipeFilters, title: String): [Recipe]
+    recipe(id: ID!): Recipe
   }
 
   extend type Mutation {
@@ -41,6 +54,7 @@ export default gql`
       ingredient: String
       equipment: String
       directions: [DirectionInput]
+      author: ID!
     ): Recipe
     modifyRecipe(
       id: ID!
@@ -54,6 +68,7 @@ export default gql`
       ingredient: String
       equipment: String
       directions: [DirectionInput]
+      author: ID!
     ): Recipe
   }
 `;

@@ -9,4 +9,9 @@ export default {
       return Comment.findById(args.id);
     },
   },
+  /* Mutation comment
+    Add comment: create new comment
+    Edit comment: find comment by id and update
+
+   */
 };

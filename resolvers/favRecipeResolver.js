@@ -5,9 +5,15 @@ export default {
     favRecipes: () => {
       return FavRecipe.find();
     },
-    favRecipe: (parent, args) => {
-       const { userid } = args;
+    favRecipe: async (parent, args) => {
+      const { userid } = args;
       return await FavRecipe.find((favrecipe) => favrecipe.userID === userid);
     },
   },
+
+  /* Mutation favRecipe
+    Add favRecipe: create new favRecipe
+    Edit favRecipe: find favRecipe by user id and update
+
+   */
 };
