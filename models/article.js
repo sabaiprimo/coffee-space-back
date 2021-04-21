@@ -14,15 +14,11 @@ const articleSchema = new Schema({
   content: [
     {
       textNumber: Number,
-      text: Sring,
+      text: String,
     },
   ],
   issueDate: Date,
-  tag: [
-    {
-      type: String,
-    },
-  ],
+  tag: [String],
 });
 
 export default mongoose.model('Article', articleSchema);

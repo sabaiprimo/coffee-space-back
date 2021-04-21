@@ -5,6 +5,7 @@ export default gql`
   extend type Query {
     users: [User]
     user(id: ID!): User
+    login(username: String!, password: String!): User
   }
 
   type User {
@@ -16,7 +17,7 @@ export default gql`
   }
 
   extend type Mutation {
-    addUser(
+    registerUser(
       email: String
       password: String
       firstName: String

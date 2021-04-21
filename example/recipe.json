@@ -1,0 +1,22 @@
+{
+  "title": "Latte",
+  "description": "Ad aute commodo occaecat ullamco.",
+  "preparationTime": 12,
+  "totalTime": 30,
+  "serving": 1,
+  "roastLevel": "Medium roast",
+  "level": "Beginner",
+  "ingredient": "1.coffe 2.bean",
+  "equipment": "1 mokapot 2adwd",
+  "directions": [
+    {
+      "step": 1,
+      "content": "Lorem dolor reprehenderit proident deserunt qui cupidatat laborum deserunt."
+    },
+    {
+      "step": 2,
+      "content": "Lorem dolor reprehenderit proident deserunt qui cupidatat laborum deserunt."
+    }
+  ],
+  "author": "12312312312"
+}

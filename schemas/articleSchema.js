@@ -62,7 +62,7 @@ export default gql`
       issueDate: DateTime
       tags: [String]
     ): Article
-    edit(
+    modifyArticle(
       id: ID!
       title: String
       subtitle: String

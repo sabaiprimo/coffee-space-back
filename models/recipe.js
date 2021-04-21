@@ -6,8 +6,8 @@ const saltRound = 12;
 const recipeSchema = new Schema({
   title: String,
   description: String,
-  preparationTime: String,
-  totalTime: String,
+  preparationTime: Number,
+  totalTime: Number,
   serving: Number,
   roastLevel: String,
   level: String,
@@ -19,6 +19,7 @@ const recipeSchema = new Schema({
       content: { type: String },
     },
   ],
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 export default mongoose.model('Recipe', recipeSchema);
