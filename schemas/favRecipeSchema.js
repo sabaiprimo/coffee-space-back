@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type favRecipe {
-    id: ID
+    _id: ID
     recipes: [Recipe]
     userID: User
     favDate: DateTime

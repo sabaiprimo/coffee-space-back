@@ -20,6 +20,12 @@ const recipeSchema = new Schema({
     },
   ],
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  images: [
+    {
+      src: String,
+      srcSet: String,
+    },
+  ],
 });
 
 export default mongoose.model('Recipe', recipeSchema);

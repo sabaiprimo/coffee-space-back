@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type Article {
-    id: ID
+    _id: ID
     title: String
     subtitle: String
     headline: String
@@ -63,7 +63,7 @@ export default gql`
       tags: [String]
     ): Article
     modifyArticle(
-      id: ID!
+      _id: ID!
       title: String
       subtitle: String
       headline: String

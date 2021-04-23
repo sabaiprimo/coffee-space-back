@@ -3,7 +3,7 @@ const { gql } = pkg;
 
 export default gql`
   type Comment {
-    id: ID
+    _id: ID
     recipeID: Recipe
     userId: User
     context: String

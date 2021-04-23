@@ -106,3 +106,6 @@ dist
 #SSL
 
 *.pem
+
+#APIKEY
+api/coffeespace-firebase.json

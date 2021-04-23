@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type favArticle {
-    id: ID
+    _id: ID
     articles: [Article]
     userID: User
     favDate: DateTime

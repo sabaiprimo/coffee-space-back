@@ -2,6 +2,7 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type Recipe {
+    _id: ID
     title: String
     description: String
     preparationTime: Float
@@ -13,7 +14,17 @@ export default gql`
     equipment: String
     directions: [Direction]
     author: User
-    images: [String]
+    images: [Image]
+  }
+
+  type Image {
+    src: String
+    srcSet: String
+  }
+
+  input ImageInput {
+    src: String
+    srcSet: String
   }
 
   type Direction {
@@ -56,10 +67,10 @@ export default gql`
       equipment: String
       directions: [DirectionInput]
       author: ID!
-      images: [String]
+      images: [ImageInput]
     ): Recipe
     modifyRecipe(
-      id: ID!
+      _id: ID!
       title: String
       description: String
       preparationTime: Float
@@ -71,7 +82,7 @@ export default gql`
       equipment: String
       directions: [DirectionInput]
       author: ID!
-      images: [String]
+      images: [ImageInput]
     ): Recipe
   }
 `;
