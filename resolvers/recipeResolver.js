@@ -4,8 +4,9 @@ export default {
   Query: {
     recipes: async (parent, args, context, info) => {
       const { filter, title } = args;
-      const shouldApplyFilters = filter !== null;
-      const shouldApplyTitleSearch = title !== null;
+
+      const shouldApplyFilters = filter ? filter : false;
+      const shouldApplyTitleSearch = title ? title : false;
 
       if (!shouldApplyFilters && !shouldApplyTitleSearch) {
         return await Recipe.find();

@@ -13,6 +13,7 @@ export default gql`
     equipment: String
     directions: [Direction]
     author: User
+    images: [String]
   }
 
   type Direction {
@@ -46,8 +47,8 @@ export default gql`
     addRecipe(
       title: String
       description: String
-      preparationTime: String
-      totalTime: String
+      preparationTime: Float
+      totalTime: Float
       serving: Int
       roastLevel: String
       level: String
@@ -55,13 +56,14 @@ export default gql`
       equipment: String
       directions: [DirectionInput]
       author: ID!
+      images: [String]
     ): Recipe
     modifyRecipe(
       id: ID!
       title: String
       description: String
-      preparationTime: String
-      totalTime: String
+      preparationTime: Float
+      totalTime: Float
       serving: Int
       roastLevel: String
       level: String
@@ -69,6 +71,7 @@ export default gql`
       equipment: String
       directions: [DirectionInput]
       author: ID!
+      images: [String]
     ): Recipe
   }
 `;
