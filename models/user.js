@@ -10,6 +10,7 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   displayName: String,
+  pictureProfile: String,
 });
 
 userSchema.pre('save', async function (next) {

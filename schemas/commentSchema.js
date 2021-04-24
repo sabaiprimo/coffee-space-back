@@ -22,8 +22,8 @@ export default gql`
       context: String
       commentDate: DateTime
     ): Comment
-    editComment(
-      id: ID!
+    modifyComment(
+      _id: ID!
       recipeID: ID
       userId: ID
       context: String

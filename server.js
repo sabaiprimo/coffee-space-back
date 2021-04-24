@@ -9,8 +9,7 @@ import connectMongo from './db/db.js';
 import cors from 'cors';
 import multer from 'multer';
 dotenv.config();
-import { Storage } from '@google-cloud/storage';
-import path from 'path';
+
 const app = express();
 
 app.use(express.json());

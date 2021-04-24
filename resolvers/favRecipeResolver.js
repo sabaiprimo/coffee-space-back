@@ -16,4 +16,25 @@ export default {
     Edit favRecipe: find favRecipe by user id and update
 
    */
+  Mutation: {
+    // Add FavRecipe: create new FavRecipe
+    addFavRecipe: (parent, args) => {
+      console.log('FavRecipe Resolver, addFavRecipe', args);
+      const newFavRecipe = new FavRecipe(args);
+      return newFavRecipe.save();
+    },
+    // Edit FavRecipe: find FavRecipe by id and update
+    modifyFavRecipe: async (parent, args) => {
+      // if (!context.user) {
+      //   throw new AuthenticationError('authication failed');
+      // }
+      return await FavRecipe.findByIdAndUpdate(
+        args.id,
+        {
+          ...args,
+        },
+        { new: true }
+      );
+    },
+  },
 };

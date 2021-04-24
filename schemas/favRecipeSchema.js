@@ -15,6 +15,6 @@ export default gql`
 
   extend type Mutation {
     addFavRecipe(userID: ID!, recipes: [ID]): favRecipe
-    editFavRecipe(id: ID!, recipes: [ID]): favRecipe
+    modifyFavRecipe(_id: ID!, recipes: [ID]): favRecipe
   }
 `;

@@ -39,7 +39,7 @@ export default {
     },
   },
   Mutation: {
-    registerUser: async (parent, args) => {
+    register: async (parent, args) => {
       try {
         return User.create(args);
       } catch (err) {
@@ -50,6 +50,18 @@ export default {
         // Some other error
         throw new Error(err);
       }
+    },
+    updateUser: async (parent, args) => {
+      // if (!context.user) {
+      //   throw new AuthenticationError('authication failed');
+      // }
+      return await User.findByIdAndUpdate(
+        args.id,
+        {
+          ...args,
+        },
+        { new: true }
+      );
     },
   },
 };

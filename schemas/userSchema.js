@@ -15,15 +15,24 @@ export default gql`
     firstName: String
     lastName: String
     displayName: String
+    pictureProfile: String
   }
 
   extend type Mutation {
-    registerUser(
+    register(
       email: String
       password: String
       firstName: String
       lastName: String
       displayName: String
     ): User
+    updateUser(
+      _id: ID
+      firstName: String
+      lastName: String
+      displayName: String
+      pictureProfile: String
+    ): User
+    resetPassword(_id: ID, password: String): User
   }
 `;
