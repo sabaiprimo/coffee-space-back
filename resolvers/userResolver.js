@@ -5,8 +5,12 @@ import jwt from 'jsonwebtoken';
 
 export default {
   Query: {
-    users: () => {
-      return User.find();
+    users: async () => {
+      return await User.find();
+    },
+    user: async (parent, args, context, info) => {
+      const { email } = args;
+      return await User.find((user) => User.email === email).pop();
     },
     login: async (parent, args, { req, res }) => {
       // call passport login (done in class)
@@ -51,7 +55,7 @@ export default {
         throw new Error(err);
       }
     },
-    updateUser: async (parent, args) => {
+    modifyUser: async (parent, args) => {
       // if (!context.user) {
       //   throw new AuthenticationError('authication failed');
       // }

@@ -4,7 +4,7 @@ const { gql } = pkg;
 export default gql`
   extend type Query {
     users: [User]
-    user(id: ID!): User
+    user(email: String): User
     login(username: String!, password: String!): User
   }
 
@@ -26,7 +26,7 @@ export default gql`
       lastName: String
       displayName: String
     ): User
-    updateUser(
+    modifyUser(
       _id: ID
       firstName: String
       lastName: String

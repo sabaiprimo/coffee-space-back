@@ -23,7 +23,7 @@ export default {
     },
     recipe: async (parent, args, context, info) => {
       const { id } = args;
-      return await recipe.find((recipe) => recipe.id === id).pop();
+      return await Recipe.find((recipe) => recipe.id === id).pop();
     },
   },
   Mutation: {
