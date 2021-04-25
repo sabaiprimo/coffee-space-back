@@ -6,7 +6,7 @@ export default gql`
     me: User
     users: [User]
     user(email: String): User
-    login(username: String!, password: String!): User
+    login(email: String!, password: String!): User
   }
 
   type User {

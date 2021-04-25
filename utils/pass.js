@@ -12,7 +12,7 @@ import bcrypt from 'bcrypt';
 passport.use(
   new Strategy(
     {
-      emailField: 'email',
+      usernameField: 'email',
       passwordField: 'password',
     },
     async (email, password, done) => {

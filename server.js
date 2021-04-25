@@ -43,27 +43,6 @@ const uploader = multer({
   },
 });
 
-// const checkAuth = (req, res) => {
-//   try {
-//     return new Promise((resolve, reject) => {
-//       passport.authenticate(
-//         'jwt',
-//         {
-//           session: false,
-//         },
-//         (err, user, info) => {
-//           if (!user) {
-//             resolve(false);
-//           }
-//           resolve(user);
-//         }
-//       )(req, res);
-//     });
-//   } catch (err) {
-//     throw err;
-//   }
-// };
-
 // Upload endpoint to send file to Firebase storage bucket
 app.post('/api/upload', uploader.single('image'), async (req, res, next) => {
   try {

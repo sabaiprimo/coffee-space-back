@@ -12,6 +12,11 @@ export default {
       );
     },
   },
+  /* Mutation favArticle
+    Add favArticle: create new favArticle
+    Edit favArticle: find favArticle by user id and update
+
+   */
   Mutation: {
     // Add favArticle: create new favArticle
     addFavArticle: (parent, args) => {
@@ -33,9 +38,4 @@ export default {
       );
     },
   },
-  /* Mutation favArticle
-    Add favArticle: create new favArticle
-    Edit favArticle: find favArticle by user id and update
-
-   */
 };
