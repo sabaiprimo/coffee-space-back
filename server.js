@@ -8,6 +8,7 @@ import resolvers from './resolvers/index.js';
 import connectMongo from './db/db.js';
 import cors from 'cors';
 import multer from 'multer';
+import { checkAuth } from './utils/checkAuth.js';
 dotenv.config();
 
 const app = express();
@@ -41,6 +42,27 @@ const uploader = multer({
     fileSize: 5 * 1024 * 1024, // limiting files size to 5 MB
   },
 });
+
+// const checkAuth = (req, res) => {
+//   try {
+//     return new Promise((resolve, reject) => {
+//       passport.authenticate(
+//         'jwt',
+//         {
+//           session: false,
+//         },
+//         (err, user, info) => {
+//           if (!user) {
+//             resolve(false);
+//           }
+//           resolve(user);
+//         }
+//       )(req, res);
+//     });
+//   } catch (err) {
+//     throw err;
+//   }
+// };
 
 // Upload endpoint to send file to Firebase storage bucket
 app.post('/api/upload', uploader.single('image'), async (req, res, next) => {
@@ -91,17 +113,17 @@ app.post('/api/upload', uploader.single('image'), async (req, res, next) => {
     const server = new ApolloServer({
       typeDefs: schemas,
       resolvers,
-      //   context: async ({ req, res }) => {
-      //     if (req) {
-      //       const user = await checkAuth(req, res);
+      context: async ({ req, res }) => {
+        if (req) {
+          const user = await checkAuth(req, res);
 
-      //       return {
-      //         req,
-      //         res,
-      //         user,
-      //       };
-      //     }
-      //   },
+          return {
+            req,
+            res,
+            user,
+          };
+        }
+      },
     });
 
     server.applyMiddleware({ app });

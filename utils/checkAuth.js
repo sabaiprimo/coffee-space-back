@@ -1,6 +1,6 @@
 import passport from './pass.js';
 
-const checkAuth = (req, res) => {
+export const checkAuth = (req, res) => {
   try {
     return new Promise((resolve, reject) => {
       passport.authenticate(
@@ -21,4 +21,4 @@ const checkAuth = (req, res) => {
   }
 };
 
-export default checkAuth;
+// export default checkAuth;

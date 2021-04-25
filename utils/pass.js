@@ -8,19 +8,19 @@ const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 import bcrypt from 'bcrypt';
 
-// local strategy for username password login
+// local strategy for email password login
 passport.use(
   new Strategy(
     {
-      usernameField: 'username',
+      emailField: 'email',
       passwordField: 'password',
     },
-    async (username, password, done) => {
+    async (email, password, done) => {
       try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         console.log('Local strategy', user); // result is binary row
         if (user === undefined) {
-          return done(null, false, { message: 'Incorrect username.' });
+          return done(null, false, { message: 'Incorrect email.' });
         }
         if (!(await bcrypt.compare(password, user.password))) {
           return done(null, false, { message: 'Wrong cretendials.' });

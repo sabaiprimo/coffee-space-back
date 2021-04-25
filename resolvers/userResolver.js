@@ -41,6 +41,16 @@ export default {
         throw err;
       }
     },
+    // fetch the profile of currenly athenticated user
+    me: async (_, args, { user }) => {
+      // Make sure user is logged in
+      if (!user) {
+        throw new Error('You are not authenticated!');
+      }
+
+      // user is authenticated
+      return await User.findById(user.id);
+    },
   },
   Mutation: {
     register: async (parent, args) => {

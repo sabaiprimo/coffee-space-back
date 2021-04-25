@@ -3,6 +3,7 @@ const { gql } = pkg;
 
 export default gql`
   extend type Query {
+    me: User
     users: [User]
     user(email: String): User
     login(username: String!, password: String!): User
@@ -16,6 +17,7 @@ export default gql`
     lastName: String
     displayName: String
     pictureProfile: String
+    token: String
   }
 
   extend type Mutation {
