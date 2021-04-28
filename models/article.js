@@ -10,15 +10,15 @@ const articleSchema = new Schema({
   cover: {
     src: String,
   },
-  images: [{ src: String, textNumber: Number }],
   content: [
     {
       textNumber: Number,
       text: String,
+      images: [String],
     },
   ],
   issueDate: Date,
-  tag: [String],
+  tags: [String],
 });
 
 export default mongoose.model('Article', articleSchema);

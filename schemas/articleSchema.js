@@ -8,7 +8,6 @@ export default gql`
     headline: String
     author: User
     cover: coverImage
-    images: [image]
     content: [contentItem]
     issueDate: DateTime
     tags: [String]
@@ -22,18 +21,15 @@ export default gql`
     src: String
   }
 
-  type image {
-    src: String
-    textNumber: Int
-  }
-
   type contentItem {
     textNumber: Int
     text: String
+    images: [String]
   }
   input contentItemInput {
     textNumber: Int
     text: String
+    images: [String]
   }
 
   input ArticleFilters {
@@ -47,7 +43,7 @@ export default gql`
 
   extend type Query {
     articles(filter: ArticleFilters): [Article]
-    article(id: ID!): Article
+    article(_id: ID!): Article
   }
 
   extend type Mutation {
@@ -57,7 +53,6 @@ export default gql`
       headline: String
       author: ID!
       cover: coverImageInput
-      images: [String]
       content: [contentItemInput]
       issueDate: DateTime
       tags: [String]
@@ -69,7 +64,7 @@ export default gql`
       headline: String
       author: ID!
       cover: coverImageInput
-      images: [String]
+
       content: [contentItemInput]
       issueDate: DateTime
       tags: [String]

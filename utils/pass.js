@@ -20,10 +20,14 @@ passport.use(
         const user = await User.findOne({ email });
         console.log('Local strategy', user); // result is binary row
         if (user === undefined) {
-          return done(null, false, { message: 'Incorrect email.' });
+          return done(new Error('Invalid'), false, {
+            message: 'Incorrect email.',
+          });
         }
         if (!(await bcrypt.compare(password, user.password))) {
-          return done(null, false, { message: 'Wrong cretendials.' });
+          return done(new Error('Invalid'), false, {
+            message: 'Wrong cretendials.',
+          });
         }
         return done(null, user.toJSON(), { message: 'Logged In Successfully' }); // use spread syntax to create shallow copy to get rid of binary row type
       } catch (err) {

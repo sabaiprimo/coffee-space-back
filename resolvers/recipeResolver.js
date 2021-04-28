@@ -13,17 +13,19 @@ export default {
       }
 
       if (shouldApplyTitleSearch) {
-        const name = filter.title;
+        const name = title;
         const regex = new RegExp(name, 'i'); // i for case insensitive
         return filter
-          ? await Recipe.find({ title: { $regex: regex } }).where(filter)
+          ? await Recipe.find({ ...filter, title: { $regex: regex } })
           : await Recipe.find({ title: { $regex: regex } });
       }
-      return await Recipe.find().where(filter);
+      console.log(filter);
+      return await Recipe.find(filter);
     },
     recipe: async (parent, args, context, info) => {
-      const { id } = args;
-      return await Recipe.find((recipe) => recipe.id === id).pop();
+      const { _id } = args;
+      console.log(_id);
+      return await Recipe.findById(_id);
     },
   },
   Mutation: {

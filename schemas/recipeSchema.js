@@ -10,11 +10,12 @@ export default gql`
     serving: Int
     roastLevel: String
     level: String
-    ingredient: String
-    equipment: String
+    ingredients: [String]
+    equipments: [String]
     directions: [Direction]
     author: User
     images: [Image]
+    issueDate: DateTime
   }
 
   type Image {
@@ -51,7 +52,7 @@ export default gql`
 
   extend type Query {
     recipes(filter: RecipeFilters, title: String): [Recipe]
-    recipe(id: ID!): Recipe
+    recipe(_id: ID!): Recipe
   }
 
   extend type Mutation {
@@ -63,8 +64,8 @@ export default gql`
       serving: Int
       roastLevel: String
       level: String
-      ingredient: String
-      equipment: String
+      ingredients: [String]
+      equipments: [String]
       directions: [DirectionInput]
       author: ID!
       images: [ImageInput]
@@ -78,8 +79,8 @@ export default gql`
       serving: Int
       roastLevel: String
       level: String
-      ingredient: String
-      equipment: String
+      ingredients: [String]
+      equipments: [String]
       directions: [DirectionInput]
       author: ID!
       images: [ImageInput]

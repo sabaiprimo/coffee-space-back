@@ -9,6 +9,9 @@ import connectMongo from './db/db.js';
 import cors from 'cors';
 import multer from 'multer';
 import { checkAuth } from './utils/checkAuth.js';
+import crypto from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
+
 dotenv.config();
 
 const app = express();
@@ -51,9 +54,10 @@ app.post('/api/upload', uploader.single('image'), async (req, res, next) => {
       res.status(400).send('Error, could not upload file');
       return;
     }
-
+    const randNum = crypto.randomBytes(10).toString('hex');
     // Create new blob in the bucket referencing the file
-    const blob = bucket.file(req.file.originalname);
+
+    const blob = bucket.file(randNum + req.file.originalname);
 
     // Create writable stream and specifying file mimetype
     const blobWriter = blob.createWriteStream({

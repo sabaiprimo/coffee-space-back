@@ -26,8 +26,8 @@ export default {
       return await Article.find();
     },
     article: async (parent, args, context, info) => {
-      const { id } = args;
-      return await Article.find((article) => article.id === id);
+      const { _id } = args;
+      return await Article.findById(_id);
     },
   },
   Mutation: {

@@ -27,7 +27,8 @@ export default gql`
       firstName: String
       lastName: String
       displayName: String
-    ): User
+    ): String
+    changePassword(_id: ID, oldPassword: String, newPassword: String): User
     modifyUser(
       _id: ID
       firstName: String

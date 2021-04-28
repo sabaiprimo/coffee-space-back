@@ -11,8 +11,8 @@ const recipeSchema = new Schema({
   serving: Number,
   roastLevel: String,
   level: String,
-  ingredient: String,
-  equipment: String,
+  ingredients: [String],
+  equipments: [String],
   directions: [
     {
       step: { type: Number },
@@ -26,6 +26,7 @@ const recipeSchema = new Schema({
       srcSet: String,
     },
   ],
+  issueDate: { type: Date, default: Date.now },
 });
 
 export default mongoose.model('Recipe', recipeSchema);
