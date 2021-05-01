@@ -5,22 +5,25 @@ export default {
     ratings: () => {
       return Rating.find();
     },
-    ratingRecipeByUser: async (args) => {
+    rateRecipe: async (parent, args) => {
       const { userID, recipeID } = args;
-      return await Rating.find({ userID: userID, recipeID: recipeID }).pop();
+      // console.log(userID);
+      return await Rating.findOne({ user: userID, recipe: recipeID });
     },
-    avgRatingRecipe: async (args) => {
+    avgRatingRecipe: async (parent, args) => {
       const { recipeID } = args;
-      const avgRating = await Rating.aggregate([
+      const avgRatings = await Rating.aggregate([
         {
           $group: {
-            _id: '$recipeID',
-            avgRating: { $avg: '$rating' },
+            _id: '$recipe',
+            avgRate: { $avg: '$rating' },
           },
         },
       ]);
 
-      return await avgRating.filter((rating) => rating._id === recipeID);
+      console.log(avgRatings);
+      console.log(recipeID);
+      return await avgRatings.find((avgRating) => avgRating._id == recipeID);
     },
   },
   Mutation: {
@@ -34,7 +37,7 @@ export default {
       //   throw new AuthenticationError('authication failed');
       // }
       return await Rating.findByIdAndUpdate(
-        args.id,
+        args._id,
         {
           ...args,
         },

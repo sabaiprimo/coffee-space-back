@@ -5,9 +5,14 @@ export default {
     favRecipes: () => {
       return FavRecipe.find();
     },
+    myFavRecipe: async (parent, args) => {
+      const { userID } = args;
+      return await FavRecipe.find({ user: userID, isFav: true });
+    },
+
     favRecipe: async (parent, args) => {
-      const { userid } = args;
-      return await FavRecipe.find((favrecipe) => favrecipe.userID === userid);
+      const { userID, recipeID } = args;
+      return await FavRecipe.findOne({ user: userID, recipe: recipeID });
     },
   },
 
@@ -28,10 +33,13 @@ export default {
       // if (!context.user) {
       //   throw new AuthenticationError('authication failed');
       // }
+      const favrecipe = await FavRecipe.findById({ _id: args._id });
+      const isFaved = favrecipe.isFav;
+      console.log('isFaved:', isFaved);
       return await FavRecipe.findByIdAndUpdate(
-        args.id,
+        args._id,
         {
-          ...args,
+          isFav: !isFaved,
         },
         { new: true }
       );

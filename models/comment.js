@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
   recipeID: { type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  userID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   context: String,
-  commentDate: Date,
+  commentDate: { type: Date, default: Date.now },
 });
 
 export default mongoose.model('Comment', commentSchema);

@@ -6,9 +6,19 @@ import bcrypt from 'bcrypt';
 const saltRound = 12;
 
 export default {
+  Comment: {
+    userID(parent) {
+      return User.findById(parent.userID);
+    },
+  },
   Recipe: {
     author(parent) {
       return User.findById(parent.author);
+    },
+  },
+  FavRecipe: {
+    user(parent) {
+      return User.findById(parent.user);
     },
   },
   Article: {

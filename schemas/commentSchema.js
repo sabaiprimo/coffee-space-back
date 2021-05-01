@@ -5,29 +5,18 @@ export default gql`
   type Comment {
     _id: ID
     recipeID: Recipe
-    userId: User
+    userID: User
     context: String
     commentDate: DateTime
   }
 
   extend type Query {
-    comments: [Comment]
-    comment(id: ID!): Comment
+    comments(recipeID: ID): [Comment]
+    comment(_id: ID!): Comment
   }
 
   extend type Mutation {
-    addComment(
-      recipeID: ID
-      userId: ID
-      context: String
-      commentDate: DateTime
-    ): Comment
-    modifyComment(
-      _id: ID!
-      recipeID: ID
-      userId: ID
-      context: String
-      commentDate: DateTime
-    ): Comment
+    addComment(recipeID: ID, userID: ID, context: String): Comment
+    modifyComment(_id: ID!, recipeID: ID, userID: ID, context: String): Comment
   }
 `;

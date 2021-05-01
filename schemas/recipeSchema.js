@@ -53,6 +53,10 @@ export default gql`
   extend type Query {
     recipes(filter: RecipeFilters, title: String): [Recipe]
     recipe(_id: ID!): Recipe
+    myRecipe(userID: ID!, limit: Int): [Recipe]
+    countRecipe(userID: ID!): Int
+    countMyRecipe(userID: ID!): Int
+    recommendRecipe(limit: Int, recipeID: ID): [Recipe]
   }
 
   extend type Mutation {
@@ -82,8 +86,8 @@ export default gql`
       ingredients: [String]
       equipments: [String]
       directions: [DirectionInput]
-      author: ID!
       images: [ImageInput]
+      issueDate: DateTime
     ): Recipe
   }
 `;

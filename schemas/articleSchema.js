@@ -11,6 +11,7 @@ export default gql`
     content: [contentItem]
     issueDate: DateTime
     tags: [String]
+    isFeatured: Boolean
   }
 
   type coverImage {
@@ -22,12 +23,10 @@ export default gql`
   }
 
   type contentItem {
-    textNumber: Int
     text: String
     images: [String]
   }
   input contentItemInput {
-    textNumber: Int
     text: String
     images: [String]
   }
@@ -43,7 +42,11 @@ export default gql`
 
   extend type Query {
     articles(filter: ArticleFilters): [Article]
+    articlesByIDs(_ids: [ID]): [Article]
+    articleLatest(limit: Int): [Article]
     article(_id: ID!): Article
+    myArticle(userID: ID!, limit: Int): [Article]
+    featureArticle(limit: Int): [Article]
   }
 
   extend type Mutation {
@@ -62,9 +65,7 @@ export default gql`
       title: String
       subtitle: String
       headline: String
-      author: ID!
       cover: coverImageInput
-
       content: [contentItemInput]
       issueDate: DateTime
       tags: [String]

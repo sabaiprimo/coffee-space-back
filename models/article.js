@@ -12,13 +12,13 @@ const articleSchema = new Schema({
   },
   content: [
     {
-      textNumber: Number,
       text: String,
       images: [String],
     },
   ],
   issueDate: Date,
   tags: [String],
+  isFeatured: { type: Boolean, default: false },
 });
 
 export default mongoose.model('Article', articleSchema);

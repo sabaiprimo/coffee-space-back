@@ -2,8 +2,12 @@ import Comment from '../models/comment.js';
 
 export default {
   Query: {
-    comments: () => {
-      return Comment.find();
+    comments: async (parent, args) => {
+      const { recipeID } = args;
+
+      return recipeID
+        ? await Comment.find({ recipeID: recipeID })
+        : await Comment.find();
     },
     comment: (parent, args) => {
       return Comment.findById(args.id);

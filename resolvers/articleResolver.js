@@ -25,9 +25,29 @@ export default {
 
       return await Article.find();
     },
+    articlesByIDs: async (parent, args, context, info) => {
+      const { _ids } = args;
+      return await Article.find().where('_id').in(_ids);
+    },
+    articleLatest: async (parent, args, context, info) => {
+      const { limit } = args;
+      return limit
+        ? await Article.find().sort({ issueDate: 'desc' }).limit(limit)
+        : await Article.find().sort({ issueDate: 'desc' });
+    },
     article: async (parent, args, context, info) => {
       const { _id } = args;
       return await Article.findById(_id);
+    },
+    myArticle: async (parent, args, context, info) => {
+      const { userID } = args;
+      return await Article.find({ author: userID });
+    },
+    featureArticle: async (parent, args, context, info) => {
+      const { limit } = args;
+      return limit
+        ? await Article.find({ isFeatured: true }).limit(limit)
+        : await Article.find({ isFeatured: true });
     },
   },
   Mutation: {
@@ -43,7 +63,7 @@ export default {
       //   throw new AuthenticationError('authication failed');
       // }
       return await Article.findByIdAndUpdate(
-        args.id,
+        args._id,
         {
           ...args,
         },

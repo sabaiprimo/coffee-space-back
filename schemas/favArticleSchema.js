@@ -1,20 +1,22 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  type favArticle {
+  type FavArticle {
     _id: ID
-    articles: [Article]
-    userID: User
+    article: Article
+    user: User
+    isFav: Boolean
     favDate: DateTime
   }
 
   extend type Query {
-    favArticles: [favArticle]
-    favArticle(id: ID!): favArticle
+    favArticles: [FavArticle]
+    myFavArticle(userID: ID!): [FavArticle]
+    favArticle(recipeID: ID!, userID: ID!): FavArticle
   }
 
   extend type Mutation {
-    addFavArticle(userID: ID!, articles: [ID]): favArticle
-    modifyFavArticle(id: ID!, articles: [ID]): favArticle
+    addFavArticle(user: ID!, recipe: ID): FavArticle
+    modifyFavArticle(_id: ID!): FavArticle
   }
 `;

@@ -5,6 +5,10 @@ export default {
     favArticles: async () => {
       return await FavArticle.find();
     },
+    myFavArticle: async (parent, args) => {
+      const { userID } = args;
+      return await FavArticle.find({ user: userID, isFav: true });
+    },
     favArticle: async (parent, args) => {
       const { userid } = args;
       return await FavArticle.find(

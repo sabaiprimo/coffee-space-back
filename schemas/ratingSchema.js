@@ -4,24 +4,24 @@ const { gql } = pkg;
 export default gql`
   type Rating {
     _id: ID
-    recipeID: Recipe
-    userId: User
+    recipe: Recipe
+    user: User
     rating: Int
   }
 
   type avgRating {
     _id: ID
-    rating: Float
+    avgRate: Float
   }
 
   extend type Query {
     ratings: [Rating]
-    ratingRecipeByUser(userID: ID, recipeID: ID): Rating
+    rateRecipe(userID: ID!, recipeID: ID!): Rating
     avgRatingRecipe(recipeID: ID): avgRating
   }
 
   extend type Mutation {
-    addRating(recipeID: ID!, userId: ID!, rating: Int!): Rating
-    modifyRating(id: ID!, rating: Int!): Rating
+    addRating(recipe: ID!, user: ID!, rating: Int!): Rating
+    modifyRating(_id: ID!, rating: Int!): Rating
   }
 `;
