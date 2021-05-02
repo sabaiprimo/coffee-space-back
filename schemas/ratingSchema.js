@@ -12,12 +12,13 @@ export default gql`
   type avgRating {
     _id: ID
     avgRate: Float
+    reviews: Int
   }
 
   extend type Query {
     ratings: [Rating]
     rateRecipe(userID: ID!, recipeID: ID!): Rating
-    avgRatingRecipe(recipeID: ID): avgRating
+    avgRatingRecipe(recipeID: ID!): avgRating
   }
 
   extend type Mutation {

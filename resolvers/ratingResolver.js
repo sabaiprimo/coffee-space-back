@@ -7,7 +7,7 @@ export default {
     },
     rateRecipe: async (parent, args) => {
       const { userID, recipeID } = args;
-      // console.log(userID);
+
       return await Rating.findOne({ user: userID, recipe: recipeID });
     },
     avgRatingRecipe: async (parent, args) => {
@@ -17,18 +17,16 @@ export default {
           $group: {
             _id: '$recipe',
             avgRate: { $avg: '$rating' },
+            reviews: { $sum: 1 },
           },
         },
       ]);
 
-      console.log(avgRatings);
-      console.log(recipeID);
       return await avgRatings.find((avgRating) => avgRating._id == recipeID);
     },
   },
   Mutation: {
     addRating: (parent, args) => {
-      console.log('Rating Resolver, addRating', args);
       const newRating = new Rating(args);
       return newRating.save();
     },

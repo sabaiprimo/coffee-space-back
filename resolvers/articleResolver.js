@@ -117,14 +117,12 @@ export default {
     },
     countMyArticle: async (parent, args, context, info) => {
       const { userID } = args;
-      console.log(userID);
       return await Article.find({ author: userID }).count();
     },
   },
   Mutation: {
     // Add article: create new article
     addArticle: (parent, args) => {
-      console.log('article Resolver, addArticle', args);
       const newArticle = new Article(args);
       return newArticle.save();
     },

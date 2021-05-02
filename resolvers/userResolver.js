@@ -82,7 +82,6 @@ export default {
     register: async (parent, args) => {
       try {
         const user = await User.create(args);
-        console.log(user);
 
         // return json web token
         return jwt.sign(JSON.stringify(user), 'your_jwt_secret');

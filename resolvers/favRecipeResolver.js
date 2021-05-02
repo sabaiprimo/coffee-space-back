@@ -29,7 +29,6 @@ export default {
   Mutation: {
     // Add FavRecipe: create new FavRecipe
     addFavRecipe: (parent, args) => {
-      console.log('FavRecipe Resolver, addFavRecipe', args);
       const newFavRecipe = new FavRecipe(args);
       return newFavRecipe.save();
     },
@@ -40,7 +39,7 @@ export default {
       // }
       const favrecipe = await FavRecipe.findById({ _id: args._id });
       const isFaved = favrecipe.isFav;
-      console.log('isFaved:', isFaved);
+
       return await FavRecipe.findByIdAndUpdate(
         args._id,
         {

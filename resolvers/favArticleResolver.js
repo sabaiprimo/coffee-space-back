@@ -38,7 +38,6 @@ export default {
         },
       ]);
 
-      console.log(popFavArticle);
       return popFavArticle;
     },
   },
@@ -50,7 +49,6 @@ export default {
   Mutation: {
     // Add favArticle: create new favArticle
     addFavArticle: (parent, args) => {
-      console.log('FavArticle Resolver, addFavArticle', args);
       const newFavArticle = new FavArticle(args);
       return newFavArticle.save();
     },

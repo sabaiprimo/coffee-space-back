@@ -18,7 +18,7 @@ passport.use(
     async (email, password, done) => {
       try {
         const user = await User.findOne({ email });
-        console.log('Local strategy', user); // result is binary row
+
         if (user === undefined) {
           return done(new Error('Invalid'), false, {
             message: 'Incorrect email.',
@@ -47,7 +47,7 @@ passport.use(
     async (jwtPayload, done) => {
       try {
         const user = await User.findById(jwtPayload._id);
-        // console.log("JWT strategy", user);
+
         if (user == null) {
           return done(null, false, { message: 'User not found.' });
         }

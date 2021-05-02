@@ -16,7 +16,6 @@ export default {
   Mutation: {
     // Add Comment: create new Comment
     addComment: (parent, args) => {
-      console.log('Comment Resolver, addComment', args);
       const newComment = new Comment(args);
       return newComment.save();
     },
