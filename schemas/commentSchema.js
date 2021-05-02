@@ -18,5 +18,6 @@ export default gql`
   extend type Mutation {
     addComment(recipeID: ID, userID: ID, context: String): Comment
     modifyComment(_id: ID!, recipeID: ID, userID: ID, context: String): Comment
+    deleteComment(commentID: ID!): Comment
   }
 `;

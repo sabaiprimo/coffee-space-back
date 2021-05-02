@@ -33,6 +33,16 @@ export default {
         { new: true }
       );
     },
+    deleteComment: async (parent, { commentID }, { user }) => {
+      try {
+        if (!user) {
+          throw new AuthenticationError('Unauthorized');
+        }
+        return await Comment.findByIdAndDelete(commentID);
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
   },
   /* Mutation comment
     Add comment: create new comment

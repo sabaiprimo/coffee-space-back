@@ -11,8 +11,9 @@ export default gql`
 
   extend type Query {
     favRecipes: [FavRecipe]
-    myFavRecipe(userID: ID!): [FavRecipe]
+    myFavRecipe(userID: ID!, limit: Int, start: Int): [FavRecipe]
     favRecipe(recipeID: ID!, userID: ID!): FavRecipe
+    countFavRecipe(userID: ID): Int
   }
 
   extend type Mutation {

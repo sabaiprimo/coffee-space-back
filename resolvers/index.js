@@ -6,6 +6,7 @@ import commentResolver from './commentResolver.js';
 import ratingResolver from './ratingResolver.js';
 import userResolver from './userResolver.js';
 import articleResolver from './articleResolver.js';
+import subscribeResolver from './subscribeResolver.js';
 import { DateTimeResolver as DateTime } from 'graphql-scalars';
 
 export default [
@@ -17,4 +18,5 @@ export default [
   commentResolver,
   ratingResolver,
   userResolver,
+  subscribeResolver,
 ];

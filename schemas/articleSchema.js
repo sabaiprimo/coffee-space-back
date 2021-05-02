@@ -41,12 +41,16 @@ export default gql`
   # }
 
   extend type Query {
-    articles(filter: ArticleFilters): [Article]
+    articles(filter: ArticleFilters, limit: Int, start: Int): [Article]
     articlesByIDs(_ids: [ID]): [Article]
-    articleLatest(limit: Int): [Article]
+    articleLatest(limit: Int, start: Int): [Article]
     article(_id: ID!): Article
-    myArticle(userID: ID!, limit: Int): [Article]
+    popularArticle: [Article]
+    myArticle(userID: ID!, limit: Int, start: Int): [Article]
     featureArticle(limit: Int): [Article]
+    similarArticle(limit: Int, articleID: ID): [Article]
+    countArticle(filter: ArticleFilters): Int
+    countMyArticle(userID: ID!): Int
   }
 
   extend type Mutation {
@@ -70,5 +74,6 @@ export default gql`
       issueDate: DateTime
       tags: [String]
     ): Article
+    deleteArticle(articleID: ID!): Article
   }
 `;

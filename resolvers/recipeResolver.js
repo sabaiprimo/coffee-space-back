@@ -1,3 +1,5 @@
+import Rating from '../models/rating.js';
+import FavRecipe from '../models/favRecipe.js';
 import Recipe from '../models/recipe.js';
 
 export default {
@@ -8,13 +10,15 @@ export default {
   },
   Query: {
     recipes: async (parent, args, context, info) => {
-      const { filter, title } = args;
+      const { filter, title, limit, start } = args;
 
       const shouldApplyFilters = filter ? filter : false;
       const shouldApplyTitleSearch = title ? title : false;
 
       if (!shouldApplyFilters && !shouldApplyTitleSearch) {
-        return await Recipe.find();
+        return await Recipe.find()
+          .limit(limit ? limit : null)
+          .skip(start ? start : null);
       }
 
       if (shouldApplyTitleSearch) {
@@ -22,10 +26,16 @@ export default {
         const regex = new RegExp(name, 'i'); // i for case insensitive
         return filter
           ? await Recipe.find({ ...filter, title: { $regex: regex } })
-          : await Recipe.find({ title: { $regex: regex } });
+              .limit(limit ? limit : null)
+              .skip(start ? start : null)
+          : await Recipe.find({ title: { $regex: regex } })
+              .limit(limit ? limit : null)
+              .skip(start ? start : null);
       }
       console.log(filter);
-      return await Recipe.find(filter);
+      return await Recipe.find(filter)
+        .limit(limit ? limit : null)
+        .skip(start ? start : null);
     },
     // for future use
     recommendRecipe: async (parent, args, context, info) => {
@@ -39,9 +49,10 @@ export default {
       return await Recipe.findById(_id);
     },
     myRecipe: async (parent, args, context, info) => {
-      const { userID } = args;
-      console.log(userID);
-      return await Recipe.find({ author: userID });
+      const { userID, limit, start } = args;
+      return await Recipe.find({ author: userID })
+        .skip(start ? start : null)
+        .limit(limit ? limit : null);
     },
     countRecipe: async (parent, args, context, info) => {
       return await Recipe.find().count();
@@ -69,6 +80,18 @@ export default {
         },
         { new: true }
       );
+    },
+    deleteRecipe: async (parent, { recipeID }, { user }) => {
+      try {
+        if (!user) {
+          throw new AuthenticationError('Unauthorized');
+        }
+        await FavRecipe.deleteMany({ recipe: recipeID });
+        await Rating.deleteMany({ recipe: recipeID });
+        return await Recipe.findByIdAndDelete(recipeID);
+      } catch (err) {
+        throw new Error(err);
+      }
     },
   },
   /* Mutation Recipe

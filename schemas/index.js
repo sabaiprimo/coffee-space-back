@@ -6,6 +6,7 @@ import commentSchema from './commentSchema.js';
 import ratingSchema from './ratingSchema.js';
 import userSchema from './userSchema.js';
 import articleSchema from './articleSchema.js';
+import subscribeSchema from './subscribeSchema.js';
 import { DateTimeTypeDefinition } from 'graphql-scalars';
 
 const linkSchema = gql`
@@ -27,4 +28,5 @@ export default [
   ratingSchema,
   userSchema,
   articleSchema,
+  subscribeSchema,
 ];

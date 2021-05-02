@@ -6,10 +6,15 @@ export default {
       return FavRecipe.find();
     },
     myFavRecipe: async (parent, args) => {
-      const { userID } = args;
-      return await FavRecipe.find({ user: userID, isFav: true });
+      const { userID, limit, start } = args;
+      return await FavRecipe.find({ user: userID, isFav: true })
+        .skip(start ? start : null)
+        .limit(limit ? limit : null);
     },
-
+    countFavRecipe: async (parent, args) => {
+      const { userID } = args;
+      return await FavRecipe.find({ user: userID, isFav: true }).count();
+    },
     favRecipe: async (parent, args) => {
       const { userID, recipeID } = args;
       return await FavRecipe.findOne({ user: userID, recipe: recipeID });

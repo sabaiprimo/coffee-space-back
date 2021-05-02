@@ -51,10 +51,15 @@ export default gql`
   # }
 
   extend type Query {
-    recipes(filter: RecipeFilters, title: String): [Recipe]
+    recipes(
+      filter: RecipeFilters
+      title: String
+      limit: Int
+      start: Int
+    ): [Recipe]
     recipe(_id: ID!): Recipe
-    myRecipe(userID: ID!, limit: Int): [Recipe]
-    countRecipe(userID: ID!): Int
+    myRecipe(userID: ID!, limit: Int, start: Int): [Recipe]
+    countRecipe(filter: RecipeFilters, title: String): Int
     countMyRecipe(userID: ID!): Int
     recommendRecipe(limit: Int, recipeID: ID): [Recipe]
   }
@@ -89,5 +94,6 @@ export default gql`
       images: [ImageInput]
       issueDate: DateTime
     ): Recipe
+    deleteRecipe(recipeID: ID!): Recipe
   }
 `;
