@@ -68,26 +68,31 @@ Thank you for my hard work.
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Checklist
-
-✅ Implement GraphQL API w/ authenticated mutations 
-✅ NoSQL Database functionality (CRUD)
-✅ Users have to be able to interact with the app ✅
-❌ ** My project doesn't need real time communication ** can use WebSocket API (e.g. chat, real time game, push notification (for client to refresh the data,...),...) or
-  WebRTC (real time voice and/or video) 
-✅ Publish your work in cloud service 
-✅ For the frontend you can (but you don't have to) use React, Angular, Bootstrap, jQuery, Ionic, React Native etc... 
-✅ In the user interface, elements / components have proper design / layout 
-✅ Visual appearance of the app is appreciated  (so at least use Bootstrap etc.) ** Material UI **
-✅ Application has to function properly :)  (Maybe some bugs here and there but should function)
-✅ Application has to be coded correctly (Waiting for strict mode and clean up)
-    * correct code structuring (Waiting for refractors)
-    * small enough, meaningful functions (Waiting for refractors)
-    * proper variable & function naming (Waiting for refractors)
-    * written with Ecmascript 6 in strict mode (Waiting for refractors)
-✅ App shouldn't copy or imitate stuff provided in the exercises 
-✅ Project source code in git 
-    * at your convenience github 
-    * .gitignore 
-    * documentation (e.g. readme.md) 
-    * Eventually: hook (deploy from source to server on git commit/push to master) ❓
-    * Trello: [Link](https://trello.com/b/nufc9yaf/coffee-space)
+<ol>
+<li>✅ Implement GraphQL API w/ authenticated mutations </li>
+<li>✅ NoSQL Database functionality (CRUD)</li>
+<li>✅ Users have to be able to interact with the app </li>
+<li>❌ ** My project doesn't need real time communication ** can use WebSocket API (e.g. chat, real time game, push notification (for client to refresh the data,...),...) or
+  WebRTC (real time voice and/or video) </li>
+<li>✅ Publish your work in cloud service </li>
+<li>✅ For the frontend you can (but you don't have to) use React, Angular, Bootstrap, jQuery, Ionic, React Native etc...</li> 
+<li>✅ In the user interface, elements / components have proper design / layout </li>
+<li>✅ Visual appearance of the app is appreciated  (so at least use Bootstrap etc.) ** Material UI **</li>
+<li>✅ Application has to function properly :)  (Maybe some bugs here and there but should function)</li>
+<li>✅ Application has to be coded correctly (Waiting for strict mode and clean up)</li>
+   <ol>
+   <li>  correct code structuring (Waiting for refractors) </li>
+   <li>  small enough, meaningful functions (Waiting for refractors)</li>
+   <li>  proper variable & function naming (Waiting for refractors)</li>
+   <li>  written with Ecmascript 6 in strict mode (Waiting for refractors)</li>
+   </ol>
+<li>✅ App shouldn't copy or imitate stuff provided in the exercises </li>
+<li>✅ Project source code in git </li>
+   <ol>
+   <li>  at your convenience github </li>
+   <li>  .gitignore </li>
+   <li>  documentation (e.g. readme.md) </li>
+   <li>  Eventually: hook (deploy from source to server on git commit/push to master) ❓</li>
+   <li>  Trello: [Link](https://trello.com/b/nufc9yaf/coffee-space)</li>
+   </ol>
+</ol>
