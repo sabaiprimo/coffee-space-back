@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.get('/', (req, res) => {
-  console.log('Hello');
   res.send('Welcome to this file upload API :)');
 });
 
@@ -49,7 +48,6 @@ const uploader = multer({
 // Upload endpoint to send file to Firebase storage bucket
 app.post('/api/upload', uploader.single('image'), async (req, res, next) => {
   try {
-    console.log(req.file);
     if (!req.file) {
       res.status(400).send('Error, could not upload file');
       return;
@@ -111,8 +109,9 @@ app.post('/api/upload', uploader.single('image'), async (req, res, next) => {
 
     server.applyMiddleware({ app });
 
-    process.env.DEPLOY_ENVI = process.env.DEPLOY_ENVI || 'development';
-    if (process.env.DEPLOY_ENVI === 'production') {
+    process.env.DEPLOY_SERVER_ENVI =
+      process.env.DEPLOY_SERVER_ENVI || 'production';
+    if (process.env.DEPLOY_SERVER_ENVI === 'production') {
       console.log('prduction');
       const { default: production } = await import('./sec/production.js');
       production(app, 3000);
