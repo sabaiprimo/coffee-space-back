@@ -97,3 +97,96 @@ Thank you for my hard work.
    <li>  Trello: [Link](https://trello.com/b/nufc9yaf/coffee-space)</li>
    </ol>
 </ol>
+
+
+## Example Query and Mutation
+
+Register
+
+```
+mutation registerUser(
+    $email: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String!
+    $displayName: String!
+  ) {
+    register(
+      email: $email
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+      displayName: $displayName
+    )
+  }
+```
+
+Login
+
+```
+query loginUser($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      _id
+      email
+      token
+    }
+}
+```
+
+
+Get Recipes
+
+```
+ query getRecipes($limit: Int) {
+    recipes(limit: $limit) {
+      _id
+      title
+      images {
+        src
+        srcSet
+      }
+      author {
+        _id
+        displayName
+        pictureProfile
+      }
+      preparationTime
+      totalTime
+      roastLevel
+      level
+      serving
+    }
+  }
+```
+
+Search for articles by title with start and limit
+
+```
+  query searchArticleByTitle(
+    $filter: ArticleFilters
+    $limit: Int
+    $start: Int
+  ) {
+    articles(filter: $filter, limit: $limit, start: $start) {
+      _id
+      title
+      subtitle
+      headline
+      author {
+        _id
+        displayName
+        pictureProfile
+      }
+      cover {
+        src
+      }
+      content {
+        text
+        images
+      }
+      issueDate
+      tags
+    }
+  }
+
+```
