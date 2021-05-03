@@ -11,6 +11,8 @@
 - Browse for new coffee recipe and read coffee article
 - Create and edit new coffee recipe and article about coffee!
 - Rate other recipes and add them to favorite 
+- Comment on others recipe
+- Subscribe for newsletter
 - Edit personal information, password
 
 ### Packages
