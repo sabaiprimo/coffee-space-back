@@ -28,15 +28,18 @@ export default {
    */
   Mutation: {
     // Add FavRecipe: create new FavRecipe
-    addFavRecipe: (parent, args) => {
+    addFavRecipe: (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const newFavRecipe = new FavRecipe(args);
       return newFavRecipe.save();
     },
     // Edit FavRecipe: find FavRecipe by id and update
-    modifyFavRecipe: async (parent, args) => {
-      // if (!context.user) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+    modifyFavRecipe: async (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const favrecipe = await FavRecipe.findById({ _id: args._id });
       const isFaved = favrecipe.isFav;
 

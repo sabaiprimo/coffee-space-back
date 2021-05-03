@@ -26,14 +26,17 @@ export default {
     },
   },
   Mutation: {
-    addRating: (parent, args) => {
+    addRating: (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const newRating = new Rating(args);
       return newRating.save();
     },
-    modifyRating: async (parent, args) => {
-      // if (!context.user) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+    modifyRating: async (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       return await Rating.findByIdAndUpdate(
         args._id,
         {

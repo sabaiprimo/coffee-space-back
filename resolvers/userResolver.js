@@ -103,9 +103,7 @@ export default {
       const salt = await bcrypt.genSalt(saltRound);
       // hash the password using our new salt
       const hashPassword = await bcrypt.hash(args.newPassword, salt);
-      // if (!context.usconst user = await User.create(args);er) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+
       return await User.findByIdAndUpdate(
         args._id,
         {

@@ -64,14 +64,17 @@ export default {
     },
   },
   Mutation: {
-    addRecipe: (parent, args) => {
+    addRecipe: (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const newRecipe = new Recipe(args);
       return newRecipe.save();
     },
-    modifyRecipe: async (parent, args) => {
-      // if (!context.user) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+    modifyRecipe: async (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       return await Recipe.findByIdAndUpdate(
         args._id,
         {

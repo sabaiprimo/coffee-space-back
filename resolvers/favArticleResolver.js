@@ -48,15 +48,18 @@ export default {
    */
   Mutation: {
     // Add favArticle: create new favArticle
-    addFavArticle: (parent, args) => {
+    addFavArticle: (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const newFavArticle = new FavArticle(args);
       return newFavArticle.save();
     },
     // Edit FavArticle: find FavArticle by id and update
-    modifyFavArticle: async (parent, args) => {
-      // if (!context.user) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+    modifyFavArticle: async (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const favArticle = await FavArticle.findById({ _id: args._id });
       const isFaved = favArticle.isFav;
       return await FavArticle.findByIdAndUpdate(

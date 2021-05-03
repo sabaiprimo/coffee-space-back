@@ -15,15 +15,18 @@ export default {
   },
   Mutation: {
     // Add Comment: create new Comment
-    addComment: (parent, args) => {
+    addComment: (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const newComment = new Comment(args);
       return newComment.save();
     },
     // Edit Comment: find Comment by id and update
-    modifyComment: async (parent, args) => {
-      // if (!context.user) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+    modifyComment: async (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       return await Comment.findByIdAndUpdate(
         args.id,
         {

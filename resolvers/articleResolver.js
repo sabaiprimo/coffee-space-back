@@ -8,7 +8,7 @@ export default {
     },
   },
   Query: {
-    articles: async (parent, args, context, info) => {
+    articles: async (parent, args) => {
       const { filter, limit, start } = args;
       const shouldApplyFilters = filter !== null;
 
@@ -39,28 +39,28 @@ export default {
         .skip(start ? start : null)
         .limit(limit ? limit : null);
     },
-    articlesByIDs: async (parent, args, context, info) => {
+    articlesByIDs: async (parent, args) => {
       const { _ids } = args;
       return await Article.find().where('_id').in(_ids);
     },
-    articleLatest: async (parent, args, context, info) => {
+    articleLatest: async (parent, args) => {
       const { limit, start } = args;
       return await Article.find()
         .sort({ issueDate: 'desc' })
         .skip(start ? start : null)
         .limit(limit ? limit : null);
     },
-    article: async (parent, args, context, info) => {
+    article: async (parent, args) => {
       const { _id } = args;
       return await Article.findById(_id);
     },
-    myArticle: async (parent, args, context, info) => {
+    myArticle: async (parent, args) => {
       const { userID, limit, start } = args;
       return await Article.find({ author: userID })
         .skip(start ? start : null)
         .limit(limit ? limit : null);
     },
-    popularArticle: async (parent, args, context, info) => {
+    popularArticle: async (parent, args) => {
       const popFavArticle = await FavArticle.aggregate([
         {
           $match: { isFav: true },
@@ -122,15 +122,18 @@ export default {
   },
   Mutation: {
     // Add article: create new article
-    addArticle: (parent, args) => {
+    addArticle: (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       const newArticle = new Article(args);
       return newArticle.save();
     },
     // Edit article: find article by id and update
-    modifyArticle: async (parent, args) => {
-      // if (!context.user) {
-      //   throw new AuthenticationError('authication failed');
-      // }
+    modifyArticle: async (parent, args, { user }) => {
+      if (!user) {
+        throw new AuthenticationError('Unauthorized');
+      }
       return await Article.findByIdAndUpdate(
         args._id,
         {
