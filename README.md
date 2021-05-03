@@ -8,10 +8,10 @@
 
 ### Feature
 
-    * Browse for new coffee recipe and read coffee article
-    * Create and edit new coffee recipe and article about coffee!
-    * Rate other recipes and add them to favorite 
-    * Edit personal information, password
+- Browse for new coffee recipe and read coffee article
+- Create and edit new coffee recipe and article about coffee!
+- Rate other recipes and add them to favorite 
+- Edit personal information, password
 
 ### Packages
 
