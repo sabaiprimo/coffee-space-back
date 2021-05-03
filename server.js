@@ -10,8 +10,6 @@ import cors from 'cors';
 import multer from 'multer';
 import { checkAuth } from './utils/checkAuth.js';
 import crypto from 'crypto';
-import { v4 as uuidv4 } from 'uuid';
-
 dotenv.config();
 
 const app = express();
