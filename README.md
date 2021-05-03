@@ -19,20 +19,20 @@
 This project is created using NodeJS. Some libraries include
 ```
    "@google-cloud/storage": "^5.8.4",
-  "apollo-server-express": "^2.22.2",
-    "bcrypt": "^5.0.1",
+   "apollo-server-express": "^2.22.2",
+   "bcrypt": "^5.0.1",
    "body-parser": "^1.19.0",
    "cors": "^2.8.5",
    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "firebase-admin": "^9.6.0",
-    "graphql": "^15.5.0",
-    "graphql-scalars": "^1.9.0",
-    "mongoose": "^5.12.3",
-    "multer": "^1.4.2",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+   "express": "^4.17.1",
+   "firebase-admin": "^9.6.0",
+   "graphql": "^15.5.0",
+   "graphql-scalars": "^1.9.0",
+   "mongoose": "^5.12.3",
+   "multer": "^1.4.2",
+   "passport": "^0.4.1",
+   "passport-jwt": "^4.0.0",
+   "passport-local": "^1.0.0"
 ```
 
 ### .env file
@@ -45,7 +45,6 @@ This project is created using NodeJS. Some libraries include
 * GCLOUD_APPLICATION_CREDENTIALS = `path to credential`
 * GCLOUD_STORAGE_BUCKET_URL = `Storage bucket url`
 * SECRETJWT = `your jwt secret here`
-* NODE_ENV = `production ; for production environment only`
 
 ## Installation
 
