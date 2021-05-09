@@ -182,6 +182,85 @@ Search for articles by title with start and limit
 
 ```
 
+Create new recipe
+```
+mutation {
+    addRecipe(
+      title: "Cappuccino"
+      description: "Make your favourite morning coffee from scratch – it\'s easy with the right equipment. We love a creamy cappuccino topped with a sprinkling of cocoa powder"
+      preparationTime: 2
+      totalTime: 5
+      serving: 1
+      roastLevel: "Medium roast"
+      level: "Beginner"
+      ingredients:  [
+        "18g ground espresso (or 1 espresso pod)",
+        "150ml milk",
+        "cocoa powder (optional)"
+    ]
+      equipments:  [
+        "200-250ml capacity cup",
+        "Coffee machine"
+    ]
+      directions: [
+        {
+            step: 1
+            content: "Make around 35ml espresso using a coffee machine and pour it into the base of your cup."
+        },
+        {
+            step: 2
+            content: "Steam the milk with the steamer attachment so that it has around 4-6cm of foam on top. Hold the jug so that the spout is about 3-4cm above the cup and pour the milk in steadily. As the volume within the cup increases, bring the jug as close to the surface of the drink as possible whilst aiming to pour into the centre. Once the milk jug is almost touching the surface of the coffee, tilt the jug to speed up the rate of pour. As you accelerate, the milk will hit the back of the cup and start naturally folding in on itself to create a pattern on the top. Dust the surface with a little cocoa powder if you like."
+        }
+    ]
+      author: "608f9aba241bae1f08b14db2"
+      images:  [
+        {
+            src: "https://firebasestorage.googleapis.com/v0/b/coffeespace-d0049.appspot.com/o/63ae880e034d60492ac8header_visual.jpg?alt=media"
+            srcSet: "https://firebasestorage.googleapis.com/v0/b/coffeespace-d0049.appspot.com/o/63ae880e034d60492ac8header_visual.jpg?alt=media"
+        }
+    ]
+    ) {
+      _id
+      title
+    }
+  }
+```
+
+Create new article
+```
+mutation {
+    addArticle(
+      title: "Is Coffee Good for You?"
+      subtitle: "Yes! But it depends on the kind of coffee and the quantity."
+      headline: "We’ve come a long way from the cans of Folgers that filled our grandparents’ cupboards, with our oat milk lattes, cold brews and Frappuccinos. Some of us are still very utilitarian about the drink while others perform elaborate rituals. The fourth most popular beverage in the country, coffee is steeped into our culture. Just the right amount can improve our mood; too much may make us feel anxious and jittery."
+      author: "608f9aba241bae1f08b14db2"
+      cover: {
+        src: "https://firebasestorage.googleapis.com/v0/b/coffeespace-d0049.appspot.com/o/61b8b1f63f568ceb4d74art1_ban.jpg?alt=media"
+    }
+      content:  [
+        {
+            images: [
+                "https://firebasestorage.googleapis.com/v0/b/coffeespace-d0049.appspot.com/o/0694a6debc34bee2ea2eart1.jpg?alt=media"
+            ]
+            text: "In moderation, coffee seems to be good for most people — that’s 3 to 5 cups daily, or up to 400 milligrams of caffeine.\n\n“The evidence is pretty consistent that coffee is associated with a lower risk of mortality,” said Erikka Loftfield, a research fellow at the National Cancer Institute who has studied the beverage.\n\nFor years, coffee was believed to be a possible carcinogen, but the 2015 Dietary Guidelines helped to change perception. For the first time, moderate coffee drinking was included as part of a healthy diet. When researchers controlled for lifestyle factors, like how many heavy coffee drinkers also smoked, the data tipped in coffee’s favor."
+        },
+        {
+            images: []
+            text: "A large 2017 review on coffee consumption and human health in the British Medical Journal also found that most of the time, coffee was associated with a benefit, rather than a harm. In examining more than 200 reviews of previous studies, the authors observed that moderate coffee drinkers had less cardiovascular disease, and premature death from all causes, including heart attacks and stroke, than those skipping the beverage."
+        }
+      ]
+      tags: [
+        "health",
+        "expert"
+    ]
+      issueDate: "2021-05-03T07:32:24.576Z"
+    ) {
+      _id
+      title
+    }
+  }
+```
+
 Get average rating for each recipe
 
 ```
@@ -190,6 +269,17 @@ Get average rating for each recipe
       _id
       avgRate
       reviews
+    }
+  }
+```
+
+Rate a recipe
+
+```
+ mutation {
+    addRating(user: "609070115669e61867f5719d", recipe: "60904bbdcf46a973ed5768ca", rating: 5) {
+      _id
+      rating
     }
   }
 ```
