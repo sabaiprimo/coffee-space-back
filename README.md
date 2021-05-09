@@ -4,7 +4,8 @@
 
 [Endpoint of deployed backend](https://env-8924245.jelastic.metropolia.fi/) `https://env-8924245.jelastic.metropolia.fi/graphql`
 
-## Description
+### Update After Presentation
+Only update readme, nothing change on code.
 
 ### Feature
 
@@ -104,13 +105,7 @@ Thank you for my hard work.
 Register
 
 ```
-mutation registerUser(
-    $email: String!
-    $password: String!
-    $firstName: String!
-    $lastName: String!
-    $displayName: String!
-  ) {
+mutation {
     register(
       email: $email
       password: $password
@@ -124,7 +119,7 @@ mutation registerUser(
 Login
 
 ```
-query loginUser($email: String!, $password: String!) {
+query {
     login(email: $email, password: $password) {
       _id
       email
@@ -134,11 +129,11 @@ query loginUser($email: String!, $password: String!) {
 ```
 
 
-Get Recipes
+Get 5 Recipes
 
 ```
- query getRecipes($limit: Int) {
-    recipes(limit: $limit) {
+ query  {
+    recipes(limit: 5) {
       _id
       title
       images {
@@ -162,12 +157,8 @@ Get Recipes
 Search for articles by title with start and limit
 
 ```
-  query searchArticleByTitle(
-    $filter: ArticleFilters
-    $limit: Int
-    $start: Int
-  ) {
-    articles(filter: $filter, limit: $limit, start: $start) {
+  query  {
+    articles(filter: {title:"Coffee" }, limit: 10, start: 1) {
       _id
       title
       subtitle
@@ -186,6 +177,38 @@ Search for articles by title with start and limit
       }
       issueDate
       tags
+    }
+  }
+
+```
+
+Get average rating for each recipe
+
+```
+ query {
+    avgRatingRecipe(recipeID:"608fc6a0241bae1f08b14dd3") {
+      _id
+      avgRate
+      reviews
+    }
+  }
+```
+
+Toggle favorite recipe
+
+```
+  mutation {
+    modifyFavRecipe(_id: "608fc6d4241bae1f08b14dd7") {
+      isFav
+    }
+  }
+```
+
+Add comment
+```
+ mutation {
+    addComment(recipeID: "608fc6a0241bae1f08b14dd3", userID: "608ff4035969de20acb7afa1", context: "Some comment") {
+      _id
     }
   }
 
